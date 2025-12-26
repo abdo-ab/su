@@ -196,7 +196,7 @@ export default function Welcome() {
                                         onClick={() => toggleMobileSection('about')}
                                         style={{ cursor: 'pointer' }}
                                     >
-                                        <Text size="3" color="white" weight="bold">About</Text>
+                                        <Text size="3" weight="bold" style={{ color: 'white' }}>About</Text>
                                         <ChevronDownIcon 
                                             width="20" 
                                             height="20" 
@@ -223,7 +223,7 @@ export default function Welcome() {
                                         onClick={() => toggleMobileSection('academics')}
                                         style={{ cursor: 'pointer' }}
                                     >
-                                        <Text size="3" color="white" weight="bold">Academics</Text>
+                                        <Text size="3" weight="bold" style={{ color: 'white' }}>Academics</Text>
                                         <ChevronDownIcon 
                                             width="20" 
                                             height="20" 
