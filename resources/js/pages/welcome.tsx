@@ -1,4 +1,5 @@
-import { Head } from '@inertiajs/react';
+import { useState } from 'react';
+import { Head, Link } from '@inertiajs/react';
 import { 
     Box, 
     Flex, 
@@ -9,39 +10,248 @@ import {
     TextField, 
     Grid,
     Card,
-    Inset,
-    Avatar,
     Link as RadixLink,
     Separator,
-    Section
+    Section,
+    IconButton
 } from '@radix-ui/themes';
-import { MagnifyingGlassIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+import { MagnifyingGlassIcon, ArrowRightIcon, HamburgerMenuIcon, Cross1Icon, ChevronDownIcon } from '@radix-ui/react-icons';
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
 export default function Welcome() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [expandedMobileSection, setExpandedMobileSection] = useState<string | null>(null);
+
+    const toggleMobileSection = (section: string) => {
+        setExpandedMobileSection(expandedMobileSection === section ? null : section);
+    };
+
     return (
         <>
             <Head title="Welcome" />
             
             <Box style={{ backgroundColor: '#020412', color: 'white', minHeight: '100vh' }}>
                 {/* Navigation */}
-                <Box py="4" px="6" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                <Box py="4" px="6" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', position: 'relative', zIndex: 50 }}>
                     <Flex justify="between" align="center">
-                        <Flex align="center" gap="2">
-                            <Box width="20px" height="20px" style={{ backgroundColor: '#D42A38', borderRadius: '4px' }} />
-                            <Text weight="bold" size="3" style={{ letterSpacing: '1px' }}>HARVARD</Text>
+                        <Flex align="center" gap="3">
+                            <Box width="40px" height="40px">
+                                <img src="/images/su-logo.png" alt="Semara University Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                            </Box>
+                            <Text weight="bold" size="3" style={{ letterSpacing: '1px' }}>Semara University</Text>
                         </Flex>
                         
-                        <Flex gap="5" display={{ initial: 'none', sm: 'flex' }}>
-                            <RadixLink href="#" color="gray" highContrast={false} style={{ color: '#fff', textDecoration: 'none', fontSize: '14px' }}>Admissions</RadixLink>
-                            <RadixLink href="#" color="gray" highContrast={false} style={{ color: '#fff', textDecoration: 'none', fontSize: '14px' }}>Campus</RadixLink>
-                            <RadixLink href="#" color="gray" highContrast={false} style={{ color: '#fff', textDecoration: 'none', fontSize: '14px' }}>Research</RadixLink>
-                            <RadixLink href="#" color="gray" highContrast={false} style={{ color: '#fff', textDecoration: 'none', fontSize: '14px' }}>Alumni</RadixLink>
-                        </Flex>
+                        {/* Desktop Navigation */}
+                        <Box display={{ initial: 'none', md: 'block' }}>
+                            <NavigationMenu viewportClassName="bg-[#020412] border border-white/10 text-white rounded-xl shadow-2xl">
+                                <NavigationMenuList className="gap-1">
+                                    <NavigationMenuItem>
+                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                            Home
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
 
-                        <Flex gap="3" align="center">
-                             <Avatar size="1" fallback="U" radius="full" color="gray" variant="solid" />
-                        </Flex>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10 data-[state=open]:text-white transition-colors">
+                                            About
+                                        </NavigationMenuTrigger>
+                                        <NavigationMenuContent>
+                                            <ul className="grid gap-2 p-4 w-[250px] md:w-[300px]">
+                                                <li>
+                                                    <NavigationMenuLink asChild>
+                                                        <Link href="leadership" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white text-sm font-medium">
+                                                            <div className="text-sm font-medium leading-none mb-2 text-red-500">Leadership</div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-gray-400">
+                                                                Meet the leaders guiding our university towards excellence.
+                                                            </p>
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                                <li>
+                                                    <NavigationMenuLink asChild>
+                                                        <Link href="uniOverview" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white text-sm font-medium">
+                                                            <div className="text-sm font-medium leading-none mb-2 text-red-500">Uni Overview</div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-gray-400">
+                                                                Learn about our history, mission, and values.
+                                                            </p>
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                            </ul>
+                                        </NavigationMenuContent>
+                                    </NavigationMenuItem>
+
+                                    <NavigationMenuItem>
+                                        <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10 data-[state=open]:text-white transition-colors">
+                                            Academics
+                                        </NavigationMenuTrigger>
+                                        <NavigationMenuContent>
+                                            <ul className="grid gap-2 p-4 w-[250px] md:w-[350px]">
+                                                <li>
+                                                    <NavigationMenuLink asChild>
+                                                        <a href="#" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white text-sm font-medium">
+                                                            <div className="text-sm font-medium leading-none mb-2 text-red-500">Offices</div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-gray-400">
+                                                                Administrative support and academic services.
+                                                            </p>
+                                                        </a>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                                <li>
+                                                    <NavigationMenuLink asChild>
+                                                        <a href="#" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white text-sm font-medium">
+                                                            <div className="text-sm font-medium leading-none mb-2 text-red-500">Colleges</div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-gray-400">
+                                                                Explore our diverse undergraduate colleges.
+                                                            </p>
+                                                        </a>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                                <li>
+                                                    <NavigationMenuLink asChild>
+                                                        <a href="#" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white text-sm font-medium">
+                                                            <div className="text-sm font-medium leading-none mb-2 text-red-500">Schools</div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-gray-400">
+                                                                Graduate and professional schools.
+                                                            </p>
+                                                        </a>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                            </ul>
+                                        </NavigationMenuContent>
+                                    </NavigationMenuItem>
+
+                                    <NavigationMenuItem>
+                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                            Research
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                            Registrar
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                            Students
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                            Blog
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                            Contact
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
+                                </NavigationMenuList>
+                            </NavigationMenu>
+                        </Box>
+
+                        {/* Mobile Menu Toggle */}
+                        <Box display={{ initial: 'block', md: 'none' }}>
+                            <IconButton 
+                                variant="ghost" 
+                                color="gray" 
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                style={{ color: 'white' }}
+                            >
+                                {isMobileMenuOpen ? <Cross1Icon width="24" height="24" /> : <HamburgerMenuIcon width="24" height="24" />}
+                            </IconButton>
+                        </Box>
                     </Flex>
+
+                    {/* Mobile Menu Overlay */}
+                    {isMobileMenuOpen && (
+                        <Box 
+                            style={{ 
+                                position: 'absolute', 
+                                top: '100%', 
+                                left: 0, 
+                                right: 0, 
+                                backgroundColor: '#020412', 
+                                padding: '20px', 
+                                borderBottom: '1px solid rgba(255,255,255,0.1)',
+                                zIndex: 40
+                            }}
+                        >
+                            <Flex direction="column" gap="4">
+                                <RadixLink href="#" style={{ color: 'white', fontSize: '16px' }}>Home</RadixLink>
+                                
+                                <Box>
+                                    <Flex 
+                                        justify="between" 
+                                        align="center" 
+                                        onClick={() => toggleMobileSection('about')}
+                                        style={{ cursor: 'pointer' }}
+                                    >
+                                        <Text size="3" color="white" weight="bold">About</Text>
+                                        <ChevronDownIcon 
+                                            width="20" 
+                                            height="20" 
+                                            style={{ 
+                                                transform: expandedMobileSection === 'about' ? 'rotate(180deg)' : 'rotate(0deg)',
+                                                transition: 'transform 0.2s',
+                                                color: 'white'
+                                            }} 
+                                        />
+                                    </Flex>
+                                    
+                                    {expandedMobileSection === 'about' && (
+                                        <Flex direction="column" gap="2" pl="3" mt="2">
+                                            <RadixLink href="#" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px' }}>Leadership</RadixLink>
+                                            <RadixLink href="#" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px' }}>Uni Overview</RadixLink>
+                                        </Flex>
+                                    )}
+                                </Box>
+
+                                <Box>
+                                    <Flex 
+                                        justify="between" 
+                                        align="center" 
+                                        onClick={() => toggleMobileSection('academics')}
+                                        style={{ cursor: 'pointer' }}
+                                    >
+                                        <Text size="3" color="white" weight="bold">Academics</Text>
+                                        <ChevronDownIcon 
+                                            width="20" 
+                                            height="20" 
+                                            style={{ 
+                                                transform: expandedMobileSection === 'academics' ? 'rotate(180deg)' : 'rotate(0deg)',
+                                                transition: 'transform 0.2s',
+                                                color: 'white'
+                                            }} 
+                                        />
+                                    </Flex>
+                                    
+                                    {expandedMobileSection === 'academics' && (
+                                        <Flex direction="column" gap="2" pl="3" mt="2">
+                                            <RadixLink href="#" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px' }}>Offices</RadixLink>
+                                            <RadixLink href="#" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px' }}>Colleges</RadixLink>
+                                            <RadixLink href="#" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px' }}>Schools</RadixLink>
+                                        </Flex>
+                                    )}
+                                </Box>
+
+                                <RadixLink href="#" style={{ color: 'white', fontSize: '16px' }}>Research</RadixLink>
+                                <RadixLink href="#" style={{ color: 'white', fontSize: '16px' }}>Registrar</RadixLink>
+                                <RadixLink href="#" style={{ color: 'white', fontSize: '16px' }}>Students</RadixLink>
+                                <RadixLink href="#" style={{ color: 'white', fontSize: '16px' }}>Blog</RadixLink>
+                                <RadixLink href="#" style={{ color: 'white', fontSize: '16px' }}>Contact</RadixLink>
+                            </Flex>
+                        </Box>
+                    )}
                 </Box>
 
                 {/* Hero Section */}
