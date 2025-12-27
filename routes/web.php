@@ -35,3 +35,20 @@ Route::get('/researchcenter', function () {
 Route::get('researchoffices', function () {
     return Inertia::render('researchoffices');
 })->name('researchoffices');
+
+//registarar
+Route::get('/registrar', function () {
+    return Inertia::render('registrar');
+})->name('registrar');
+
+// students
+Route::get('/students', function () {
+    return Inertia::render('students');
+})->name('students');
+
+// blog
+Route::get('/blog', function () {
+    return Inertia::render('blog');
+})->name('blog');
+
+
