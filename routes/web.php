@@ -16,3 +16,22 @@ Route::get('/leadership', function () {
 Route::get('/uniOverview', function () {
     return Inertia::render('uniOverview');
 })->name('uniOverview');
+
+// acadimcs
+Route::get('/offices', function () {
+    return Inertia::render('offices');
+})->name('offices');
+Route::get('/collages', function () {
+    return Inertia::render('collages');
+})->name('collages');
+Route::get('/schools', function () {
+    return Inertia::render('schools');
+})->name('schools');
+
+//research 
+Route::get('/researchcenter', function () {
+    return Inertia::render('researchcenter');
+})->name('researchcenter');
+Route::get('researchoffices', function () {
+    return Inertia::render('researchoffices');
+})->name('researchoffices');
