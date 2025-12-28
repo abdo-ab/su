@@ -26,6 +26,8 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import VideoPlayer from '@/components/VideoPlayer';
+import HoverCard from '@/components/HoverCard';
 
 export default function Welcome() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -160,23 +162,18 @@ Administrative support for grants, ethics compliance, and research development.
                                         </NavigationMenuContent>
                                     </NavigationMenuItem>
                                     <NavigationMenuItem>
-                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                        <NavigationMenuLink href="registrar" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
                                             Registrar
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
                                     <NavigationMenuItem>
-                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                        <NavigationMenuLink href="students" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
                                             Students
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
                                     <NavigationMenuItem>
-                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
+                                        <NavigationMenuLink href="blog" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
                                             Blog
-                                        </NavigationMenuLink>
-                                    </NavigationMenuItem>
-                                    <NavigationMenuItem>
-                                        <NavigationMenuLink href="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white transition-colors")}>
-                                            Contact
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
                                 </NavigationMenuList>
@@ -315,12 +312,12 @@ Administrative support for grants, ethics compliance, and research development.
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.05em'
                             }}>
-                                <Text>Est. 1636 • Cambridge, MA</Text>
+                                <Text>From The Land of Origin</Text>
                             </Box>
                             
                             <Heading size="9" align="center" style={{ fontWeight: 400, fontSize: '4rem', lineHeight: 1.1 }}>
-                                Truth For The <br />
-                                <span style={{ color: '#D42A38', fontStyle: 'italic', fontFamily: 'serif' }}>Future.</span>
+                                We Serve the  <br />
+                                <span style={{ color: '#D42A38', fontStyle: 'italic', fontFamily: 'serif' }}>Community.</span>
                             </Heading>
                             
                             <Text align="center" size="3" color="gray" style={{ maxWidth: '500px', lineHeight: 1.6 }}>
@@ -351,95 +348,37 @@ Administrative support for grants, ethics compliance, and research development.
                     </Container>
                 </Section>
                 
-                {/* Neighbor Section */}
-                <Section size="3" style={{ backgroundColor: '#020412' }}>
+                {/*introduction Section */}
+                <Section size="3" style={{ backgroundColor: '#020412', color: 'white' }}>
                     <Container size="4">
-                        <Box mb="6">
-                            <Text size="2" style={{ color: '#D42A38', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold' }}>Local Community</Text>
+                        <Box mb="8">
+                            <Text size="2" style={{ color: '#D42A38', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold' }}>Meet Your Community</Text>
                             <Heading size="8" style={{ marginTop: '8px', lineHeight: 1.2 }}>
-                                Harvard is not an island.<br />
-                                <span style={{ color: 'gray' }}>We are a neighbor.</span>
+                                Afar is not far.
                             </Heading>
                         </Box>
                         
-                        <Grid columns={{ initial: '1', md: '2' }} gap="8">
+                        <Grid columns={{ initial: '1', lg: '2' }} gap="9" align="center">
                             {/* Video Card */}
-                            <Box style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', aspectRatio: '16/9' }}>
-                                <img src="/images/office.png" alt="Office Meeting" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
-                                <Flex align="center" justify="center" style={{ position: 'absolute', inset: 0 }}>
-                                    <Box style={{ 
-                                        width: '64px', 
-                                        height: '64px', 
-                                        borderRadius: '50%', 
-                                        backgroundColor: 'rgba(255,255,255,0.2)', 
-                                        backdropFilter: 'blur(4px)',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        cursor: 'pointer'
-                                    }}>
-                                        <Box style={{ borderLeft: '16px solid white', borderTop: '10px solid transparent', borderBottom: '10px solid transparent' }} />
-                                    </Box>
-                                </Flex>
-                                <Box style={{ position: 'absolute', bottom: '20px', left: '20px', backgroundColor: 'rgba(0,0,0,0.6)', padding: '4px 12px', borderRadius: '4px' }}>
-                                    <Text size="1" weight="bold">SEE OUR COMMUNITY</Text>
-                                </Box>
-                            </Box>
+                            <VideoPlayer src="/images/su_video.mp4" poster="/images/suvideo_poster.png" />
                             
                             {/* Content */}
                             <Flex direction="column" justify="between">
                                 <Box mb="6">
                                     <Heading size="5" mb="2">Serving our community</Heading>
-                                    <Text size="3" color="gray" style={{ lineHeight: 1.6 }}>
-                                        Harvard is deeply engaged in the community, working with partners to create affordable housing, advance public schools, and support local jobs.
-                                    </Text>
-                                    <RadixLink href="#" style={{ color: '#D42A38', marginTop: '16px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                        Read the full report <ArrowRightIcon />
-                                    </RadixLink>
                                 </Box>
                                 
-                                <Grid columns="2" gap="4">
-                                    <Card style={{ backgroundColor: '#0A0C16', borderColor: 'rgba(255,255,255,0.1)' }}>
-                                        <Flex direction="column" gap="1">
-                                            <Box width="32px" height="32px" style={{ backgroundColor: 'rgba(212, 42, 56, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '8px' }}>
-                                                <Text size="3">🏠</Text>
-                                            </Box>
-                                            <Heading size="3">2,000+ Homes</Heading>
-                                            <Text size="1" color="gray">Preserved or created</Text>
-                                        </Flex>
-                                    </Card>
-                                    <Card style={{ backgroundColor: '#0A0C16', borderColor: 'rgba(255,255,255,0.1)' }}>
-                                        <Flex direction="column" gap="1">
-                                            <Box width="32px" height="32px" style={{ backgroundColor: 'rgba(212, 42, 56, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '8px' }}>
-                                                <Text size="3">🎓</Text>
-                                            </Box>
-                                            <Heading size="3">1st Partner</Heading>
-                                            <Text size="1" color="gray">To public schools</Text>
-                                        </Flex>
-                                    </Card>
-                                    <Card style={{ backgroundColor: '#0A0C16', borderColor: 'rgba(255,255,255,0.1)' }}>
-                                        <Flex direction="column" gap="1">
-                                            <Box width="32px" height="32px" style={{ backgroundColor: 'rgba(212, 42, 56, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '8px' }}>
-                                                <Text size="3">💼</Text>
-                                            </Box>
-                                            <Heading size="3">Top Employer</Heading>
-                                            <Text size="1" color="gray">In Cambridge</Text>
-                                        </Flex>
-                                    </Card>
-                                    <Card style={{ backgroundColor: '#0A0C16', borderColor: 'rgba(255,255,255,0.1)' }}>
-                                        <Flex direction="column" gap="1">
-                                            <Box width="32px" height="32px" style={{ backgroundColor: 'rgba(212, 42, 56, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '8px' }}>
-                                                <Text size="3">🤝</Text>
-                                            </Box>
-                                            <Heading size="3">Local Action</Heading>
-                                            <Text size="1" color="gray">New initiatives</Text>
-                                        </Flex>
-                                    </Card>
+                                <Grid columns={{ initial: '1', sm: '2' }} gap="4">
+                                    <HoverCard icon="🏠" title="2,000+ Homes" subtitle="Preserved or created" />
+                                    <HoverCard icon="🎓" title="1st Partner" subtitle="To public schools" />
+                                    <HoverCard icon="💼" title="Top Employer" subtitle="In Cambridge" />
+                                    <HoverCard icon="🤝" title="Local Action" subtitle="New initiatives" />
                                 </Grid>
                             </Flex>
                         </Grid>
                     </Container>
                 </Section>
+
 
                 {/* Impact Section */}
                 <Section size="3">
