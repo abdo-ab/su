@@ -1,6 +1,6 @@
 
 export default function blog() {
   return (
-    <div>blog</div>
+    <div>this is blog page to fetch data from backend</div>
   )
 }
