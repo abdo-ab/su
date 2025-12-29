@@ -2,6 +2,6 @@
 
 export default function home() {
   return (
-    <div>this is home page </div>
+    <div>this is home page for test </div>
   )
 }
