@@ -1,6 +1,6 @@
 
 export default function students() {
   return (
-    <div> this is students page</div>
+    <div> this is students detail page</div>
   )
 }
